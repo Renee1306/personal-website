@@ -1,6 +1,5 @@
-import { Marquee } from "@/components/Marquee";
 import { Reveal } from "@/components/Reveal";
-import { about, clients, disciplines } from "@/content/site";
+import { about, disciplines } from "@/content/site";
 
 export function About() {
   return (
@@ -19,21 +18,8 @@ export function About() {
         <p className="mt-8 max-w-2xl text-lg leading-relaxed text-muted">{about.body}</p>
       </Reveal>
 
-      <Reveal delay={0.15} className="mt-20">
-        <Marquee duration={50} className="border-y border-hairline py-6">
-          {clients.map((client) => (
-            <span
-              key={client.name}
-              className="mx-6 whitespace-nowrap text-xl tracking-tight text-muted md:mx-10 md:text-2xl"
-            >
-              {client.name}
-            </span>
-          ))}
-        </Marquee>
-      </Reveal>
-
       <Reveal delay={0.2}>
-        <ul className="mt-16 grid gap-x-8 gap-y-6 sm:grid-cols-2 lg:grid-cols-4">
+        <ul className="mt-20 grid gap-x-8 gap-y-6 sm:grid-cols-2 lg:grid-cols-4">
           {disciplines.map((discipline, i) => (
             <li key={discipline} className="border-t border-hairline pt-4">
               <span className="text-sm text-muted">0{i + 1}</span>

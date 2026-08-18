@@ -20,9 +20,9 @@ export type PortraitBackdropKey = keyof typeof portraitBackdrops;
 export const sections = [
   { id: "about", label: "About" },
   { id: "work", label: "Experience" },
+  { id: "education", label: "Education" },
   { id: "projects", label: "Projects" },
   { id: "hackathons", label: "Hackathons" },
-  { id: "education", label: "Education" },
   { id: "skills", label: "Skills" },
   { id: "contact", label: "Contact" },
 ] as const;
@@ -37,7 +37,9 @@ export const site = {
   metaDescription:
     "Renee Nyong is a Generative AI application developer at Experian Malaysia, building multi-agent LLM systems, RAG pipelines, and data products that ship.",
   email: "reneenyong3@gmail.com",
-  portrait: "/portrait.png",
+  // Versioned filename: browsers cache /_next/image aggressively by URL, so
+  // replacing the picture means bumping this name (portrait-v3.png, etc.).
+  portrait: "/portrait-v2.png",
   /**
    * Set true when the image already contains its own background (e.g. a stylised
    * portrait with a gradient baked in) — it then fills the oval edge to edge and
