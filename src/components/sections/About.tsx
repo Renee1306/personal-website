@@ -1,0 +1,47 @@
+import { Marquee } from "@/components/Marquee";
+import { Reveal } from "@/components/Reveal";
+import { about, clients, disciplines } from "@/content/site";
+
+export function About() {
+  return (
+    <section id="about" className="mx-auto max-w-7xl px-6 py-24 md:px-10 md:py-36">
+      <Reveal>
+        <p className="eyebrow text-sm text-muted">{about.eyebrow}</p>
+      </Reveal>
+
+      <Reveal delay={0.05}>
+        <h2 className="mt-8 max-w-4xl text-[clamp(2rem,5.5vw,4.5rem)] font-medium leading-[0.95] tracking-[-0.03em]">
+          {about.headline}
+        </h2>
+      </Reveal>
+
+      <Reveal delay={0.1}>
+        <p className="mt-8 max-w-2xl text-lg leading-relaxed text-muted">{about.body}</p>
+      </Reveal>
+
+      <Reveal delay={0.15} className="mt-20">
+        <Marquee duration={50} className="border-y border-hairline py-6">
+          {clients.map((client) => (
+            <span
+              key={client.name}
+              className="mx-6 whitespace-nowrap text-xl tracking-tight text-muted md:mx-10 md:text-2xl"
+            >
+              {client.name}
+            </span>
+          ))}
+        </Marquee>
+      </Reveal>
+
+      <Reveal delay={0.2}>
+        <ul className="mt-16 grid gap-x-8 gap-y-6 sm:grid-cols-2 lg:grid-cols-4">
+          {disciplines.map((discipline, i) => (
+            <li key={discipline} className="border-t border-hairline pt-4">
+              <span className="text-sm text-muted">0{i + 1}</span>
+              <p className="mt-2 text-xl tracking-tight">{discipline}</p>
+            </li>
+          ))}
+        </ul>
+      </Reveal>
+    </section>
+  );
+}
