@@ -283,10 +283,7 @@ export const projects: {
       repo: "https://github.com/Renee1306/career-pilot",
       live: "https://career-pilot-my.pages.dev/",
       liveNote: "Backend is on a free tier — the first request after idle takes ~30–60s to wake.",
-      // Save a screenshot of the CareerPilot UI to public/career-pilot.png and
-      // uncomment this line. Until then the card shows a placeholder panel
-      // rather than a broken image.
-      // image: "/career-pilot.png",
+      image: "/career-pilot.png",
     },
     {
       title: "Tomato Leaf Disease Detection",
