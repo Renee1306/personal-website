@@ -16,7 +16,7 @@ export function HackathonDeck({ items }: { items: Hackathon[] }) {
       {/* The fanned deck. Each card is offset from the active one, so selecting a
           card re-fans the whole spread around it. The fan is wider than the
           viewport on purpose, so it has to clip rather than extend the page. */}
-      <div className="relative h-[26rem] select-none overflow-hidden sm:h-[34rem]">
+      <div className="relative h-[22rem] select-none overflow-hidden sm:h-[28rem]">
         {items.map((item, i) => {
           const offset = i - activeIndex;
           const isActive = offset === 0;
@@ -29,7 +29,8 @@ export function HackathonDeck({ items }: { items: Hackathon[] }) {
               onClick={() => setActiveIndex(i)}
               aria-label={`${item.title} — ${item.award}`}
               aria-pressed={isActive}
-              className="absolute left-1/2 top-6 h-[19rem] w-56 origin-bottom cursor-pointer rounded-3xl focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent sm:h-[27rem] sm:w-[19rem]"
+              // Square (1:1) card, up from the old 224x304 / 304x432 portrait ratio.
+              className="absolute left-1/2 top-6 h-56 w-56 origin-bottom cursor-pointer rounded-3xl focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent sm:h-[22rem] sm:w-[22rem]"
               initial={false}
               animate={{
                 // Fan tightens on narrow screens so neighbouring cards stay on-screen.

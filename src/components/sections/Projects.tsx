@@ -27,6 +27,9 @@ export function Projects() {
                       src={item.image}
                       alt={`${item.title} interface`}
                       fill
+                      // These are UI screenshots with small text in them, so the
+                      // default quality (75) leaves it visibly mushy.
+                      quality={90}
                       sizes="(max-width: 1024px) 100vw, 50vw"
                       className="object-cover object-top"
                     />

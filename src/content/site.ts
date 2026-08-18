@@ -204,8 +204,8 @@ export const work: WorkItem[] = [
     ],
     tags: ["LangChain", "RAG", "FastAPI", "Azure"],
     images: [
-      { src: "/experian-teambuilding.jpeg", alt: "Renee with the Experian team at a team-building day" },
-      { src: "/experian-intern-2.jpeg", alt: "Renee at the Experian Malaysia office" },
+      { src: "/experian-ai.jpeg", alt: "Renee with colleagues in a meeting room at Experian Malaysia" },
+      { src: "/experian-ai-2.jpeg", alt: "Renee at the Experian Malaysia team-building day, January 2026" },
     ],
   },
   {
@@ -220,7 +220,10 @@ export const work: WorkItem[] = [
       "Engineered GenAI prompts and built ETL pipelines to enhance automation and AI model integration.",
     ],
     tags: ["Python", "ETL", "Credit risk"],
-    images: [{ src: "/experian-intern.jpeg", alt: "Renee during her internship at Experian Malaysia" }],
+    images: [
+      { src: "/experian-intern.jpeg", alt: "Renee with fellow interns at the Experian Malaysia office" },
+      { src: "/experian-intern-2.jpeg", alt: "Renee outside the Experian Malaysia office" },
+    ],
   },
   {
     title: "HR Analyst Intern",

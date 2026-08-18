@@ -60,7 +60,11 @@ export function PhotoStack({ photos, label }: { photos: Photo[]; label: string }
                   src={photo.src}
                   alt={photo.alt}
                   fill
-                  sizes="(max-width: 1024px) 90vw, 420px"
+                  quality={90}
+                  // The desktop column is roughly half of a max-w-7xl section, so
+                  // 420px undersold it — a smaller image than actually needed was
+                  // getting upscaled to fill the box.
+                  sizes="(max-width: 1024px) 90vw, 45vw"
                   className="object-cover"
                 />
               </span>

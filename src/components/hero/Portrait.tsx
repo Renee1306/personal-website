@@ -7,6 +7,12 @@ import { portraitBackdrops, site, type PortraitBackdropKey } from "@/content/sit
 
 const SPRING = { stiffness: 110, damping: 18, mass: 0.6 };
 
+// Matches the component's own lg (1024px) breakpoint. The desktop slot is
+// generous on purpose: the frame is height-driven up to 48rem tall there, and
+// an oversized request just wastes a little bandwidth — an undersized one
+// upscales and looks soft, which is the failure that actually matters here.
+const PORTRAIT_SIZES = "(max-width: 1023px) 72vw, 44rem";
+
 export function Portrait({
   pointerX,
   pointerY,
@@ -57,7 +63,8 @@ export function Portrait({
               alt={`Portrait of ${site.name}`}
               fill
               priority
-              sizes="(max-width: 768px) 78vw, 26rem"
+              quality={90}
+              sizes={PORTRAIT_SIZES}
               className="object-cover object-top"
             />
 
@@ -75,7 +82,8 @@ export function Portrait({
                   alt=""
                   aria-hidden
                   fill
-                  sizes="(max-width: 768px) 78vw, 26rem"
+                  quality={90}
+                  sizes={PORTRAIT_SIZES}
                   className="object-cover object-top"
                 />
               </div>
@@ -101,7 +109,8 @@ export function Portrait({
                 alt={`Portrait of ${site.name}`}
                 fill
                 priority
-                sizes="(max-width: 768px) 78vw, 26rem"
+                quality={90}
+                sizes={PORTRAIT_SIZES}
                 className="scale-[1.04] object-contain object-bottom drop-shadow-[0_18px_40px_rgba(0,0,0,0.18)]"
               />
             </motion.div>
