@@ -76,15 +76,16 @@ export function SectionNav() {
           aria-label="Section navigation"
           className="fixed inset-x-0 top-4 z-50 flex justify-center px-4"
         >
-          <ul className="flex items-center gap-1 rounded-full bg-surface/85 p-1.5 shadow-lg ring-1 ring-hairline backdrop-blur-md">
+          {/* Seven items overflow a narrow phone, so the pill scrolls horizontally there. */}
+          <ul className="flex max-w-full items-center gap-1 overflow-x-auto rounded-full bg-surface/85 p-1.5 shadow-lg ring-1 ring-hairline backdrop-blur-md [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
             {sections.map((section) => {
               const isActive = section.id === activeId;
               return (
-                <li key={section.id}>
+                <li key={section.id} className="shrink-0">
                   <a
                     href={`#${section.id}`}
                     aria-current={isActive ? "true" : undefined}
-                    className={`relative block rounded-full px-3 py-2 text-sm transition-colors sm:px-4 ${
+                    className={`relative block whitespace-nowrap rounded-full px-3 py-2 text-sm transition-colors sm:px-4 ${
                       isActive ? "text-background" : "text-muted hover:text-foreground"
                     }`}
                   >

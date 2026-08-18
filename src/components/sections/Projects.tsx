@@ -1,5 +1,4 @@
 import Image from "next/image";
-import { Carousel } from "@/components/Carousel";
 import { Reveal } from "@/components/Reveal";
 import { projects } from "@/content/site";
 
@@ -16,52 +15,92 @@ export function Projects() {
         </h2>
       </Reveal>
 
-      <Reveal delay={0.1} className="mt-12">
-        <Carousel slideClassName="w-[86vw] sm:w-[420px]">
-          {projects.items.map((item) => (
-            <article
-              key={item.title}
-              className="flex h-full min-h-[420px] flex-col justify-between overflow-hidden rounded-3xl border border-hairline bg-surface"
-            >
-              {item.image && (
-                <div className="relative aspect-[4/3] w-full overflow-hidden">
-                  <Image
-                    src={item.image}
-                    alt={`${item.title} — ${item.award}`}
-                    fill
-                    sizes="(max-width: 640px) 86vw, 420px"
-                    className="object-cover"
-                  />
-                </div>
-              )}
+      <Reveal delay={0.1}>
+        <p className="mt-6 max-w-xl text-lg leading-relaxed text-muted">{projects.body}</p>
+      </Reveal>
 
-              <div className="flex flex-1 flex-col justify-between p-8">
-                <div>
-                  <p className="text-sm text-accent">{item.award}</p>
-                  <h3 className="mt-4 text-3xl tracking-tight">{item.title}</h3>
-                  <p className="mt-1 text-sm text-muted">{item.year}</p>
-                  <p className="mt-6 leading-relaxed text-muted">{item.blurb}</p>
+      <div className="mt-16 space-y-6">
+        {projects.items.map((item, i) => (
+          <Reveal key={item.title} delay={i * 0.05}>
+            <article className="overflow-hidden rounded-3xl border border-hairline bg-surface">
+              <div className="grid lg:grid-cols-2">
+                {/* Screenshot. Falls back to a labelled panel until one is added. */}
+                <div className="relative aspect-[16/10] w-full overflow-hidden bg-background lg:aspect-auto lg:min-h-[26rem]">
+                  {item.image ? (
+                    <Image
+                      src={item.image}
+                      alt={`${item.title} interface`}
+                      fill
+                      sizes="(max-width: 1024px) 100vw, 50vw"
+                      className="object-cover object-top"
+                    />
+                  ) : (
+                    <div className="flex h-full items-center justify-center p-8 text-center text-sm text-muted">
+                      Screenshot coming soon
+                    </div>
+                  )}
                 </div>
 
-                <div className="mt-8 flex flex-wrap gap-2">
-                  {item.stack.map((tech) => (
-                    <span
-                      key={tech}
-                      className="rounded-full border border-hairline px-3 py-1 text-xs text-muted"
-                    >
-                      {tech}
-                    </span>
-                  ))}
+                <div className="flex flex-col justify-between p-8 md:p-10">
+                  <div>
+                    <div className="flex flex-wrap items-baseline justify-between gap-3">
+                      <p className="text-sm text-accent">{item.kicker}</p>
+                      <p className="text-sm text-muted">{item.year}</p>
+                    </div>
+
+                    <h3 className="mt-3 text-3xl tracking-tight md:text-4xl">{item.title}</h3>
+                    <p className="mt-5 leading-relaxed text-muted">{item.blurb}</p>
+
+                    <dl className="mt-8 space-y-3">
+                      {item.stack.map((group) => (
+                        <div key={group.group} className="flex flex-wrap items-baseline gap-x-3 gap-y-2">
+                          <dt className="w-20 shrink-0 text-xs text-muted">{group.group}</dt>
+                          <dd className="flex flex-wrap gap-2">
+                            {group.items.map((tech) => (
+                              <span
+                                key={tech}
+                                className="rounded-full border border-hairline px-3 py-1 text-xs"
+                              >
+                                {tech}
+                              </span>
+                            ))}
+                          </dd>
+                        </div>
+                      ))}
+                    </dl>
+                  </div>
+
+                  <div className="mt-10">
+                    <div className="flex flex-wrap gap-3">
+                      {item.live && (
+                        <a
+                          href={item.live}
+                          target="_blank"
+                          rel="noreferrer"
+                          className="inline-flex items-center gap-2 rounded-full bg-foreground px-5 py-2.5 text-sm text-background transition hover:opacity-85"
+                        >
+                          Live demo
+                          <span aria-hidden>↗</span>
+                        </a>
+                      )}
+                      <a
+                        href={item.repo}
+                        target="_blank"
+                        rel="noreferrer"
+                        className="inline-flex items-center gap-2 rounded-full border border-hairline px-5 py-2.5 text-sm transition hover:bg-foreground hover:text-background"
+                      >
+                        GitHub
+                        <span aria-hidden>↗</span>
+                      </a>
+                    </div>
+                    {item.liveNote && <p className="mt-3 text-xs text-muted">{item.liveNote}</p>}
+                  </div>
                 </div>
               </div>
             </article>
-          ))}
-        </Carousel>
-      </Reveal>
-
-      <Reveal delay={0.15}>
-        <p className="mt-16 max-w-xl text-lg leading-relaxed text-muted">{projects.body}</p>
-      </Reveal>
+          </Reveal>
+        ))}
+      </div>
     </section>
   );
 }

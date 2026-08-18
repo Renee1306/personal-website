@@ -21,7 +21,9 @@ export const sections = [
   { id: "about", label: "About" },
   { id: "work", label: "Experience" },
   { id: "projects", label: "Projects" },
-  { id: "toolkit", label: "Toolkit" },
+  { id: "hackathons", label: "Hackathons" },
+  { id: "education", label: "Education" },
+  { id: "skills", label: "Skills" },
   { id: "contact", label: "Contact" },
 ] as const;
 
@@ -61,54 +63,79 @@ export const stats = [
   { value: "98%", label: ["Extraction", "accuracy at scale"] },
 ];
 
-export const highlights = {
-  heading: "Competition record:",
+export type Hackathon = {
+  title: string;
+  award: string;
+  year: string;
+  image: string;
+  blurb?: string;
+  stack?: string[];
+};
+
+export const hackathons: {
+  eyebrow: string;
+  headline: string;
+  body: string;
+  items: Hackathon[];
+} = {
+  eyebrow: "/hackathons",
+  headline: "Eight podiums, most of them built overnight.",
+  body: "The constraint I like about hackathons: you cannot fake a working demo at 4am. Every one of these shipped something that ran in front of judges.",
   items: [
     {
-      kicker: "Champion",
       title: "Experian Malaysia AI Hackathon 2.0",
-      year: "2024",
+      award: "Champion",
+      year: "Oct 2024",
       image: "/experian-ai-hackathon.jpeg",
+      blurb:
+        "An AI-powered HR platform using Azure OpenAI to streamline resume screening and talent matching, built and shipped inside the competition window.",
+      stack: ["Python", "Azure OpenAI", "HTML/CSS"],
     },
     {
-      kicker: "2nd Runner-Up",
       title: "Western Digital × Monash 36H Hackathon",
-      year: "2024",
+      award: "2nd Runner-Up",
+      year: "Oct 2024",
       image: "/western-digital-monash.jpeg",
+      blurb:
+        "A machine learning platform for firmware analysis and hardware failure prediction, built end to end in 36 hours.",
+      stack: ["Python", "React", "Tailwind CSS"],
     },
     {
-      kicker: "1st Runner-Up",
       title: "UM Hackathon 2024",
-      year: "2024",
+      award: "1st Runner-Up",
+      year: "Mar 2024",
       image: "/um-hackathon.jpeg",
+      blurb:
+        "Automated assessment of Shariah-compliant companies, combining Python analysis with Power Automate orchestration.",
+      stack: ["Python", "Power Automate"],
     },
     {
-      kicker: "Research Excellence",
       title: "I-PHAMATHON 2024",
+      award: "Research Excellence Award",
       year: "2024",
       image: "/iphamathon.jpeg",
     },
     {
-      kicker: "2nd Runner-Up",
-      title: "DHL × UTM Sustainable Food Nexus",
+      title: "DHL × UTM Sustainable Food Nexus Challenge",
+      award: "2nd Runner-Up",
       year: "2023",
       image: "/dhl-utm-food-nexus.jpeg",
     },
     {
-      kicker: "Champion",
       title: "Intervarsity Think Tank 2023",
+      award: "Champion",
       year: "2023",
       image: "/intervarsity-think-tank.jpeg",
     },
     {
-      kicker: "2nd Runner-Up",
       title: "BAT × APU Ideathon 2023",
+      award: "2nd Runner-Up",
       year: "2023",
       image: "/bat-apu-ideathon.jpeg",
     },
     {
-      kicker: "2nd Runner-Up",
       title: "APU Startup Weekend 2023",
+      award: "2nd Runner-Up",
       year: "2023",
       image: "/apu-startup-weekend.jpeg",
     },
@@ -216,10 +243,15 @@ export const work: WorkItem[] = [
 
 export type ProjectItem = {
   title: string;
-  award: string;
+  kicker: string;
   year: string;
   blurb: string;
-  stack: string[];
+  /** Grouped so the card can show what each part of the system is built with. */
+  stack: { group: string; items: string[] }[];
+  repo: string;
+  live?: string;
+  liveNote?: string;
+  /** Drop a screenshot in /public and point at it here. */
   image?: string;
 };
 
@@ -230,49 +262,50 @@ export const projects: {
   items: ProjectItem[];
 } = {
   eyebrow: "/projects",
-  headline: "Research, final year work, and things built under a 36-hour clock.",
-  body: "Most of these started as competition entries. The constraint I like about hackathons: you cannot fake a working demo at 4am.",
+  headline: "Things I built end to end, from model to deployed interface.",
+  body: "Both of these are public on GitHub and running live — the code, the deploy, and the design decisions are all mine to defend.",
   items: [
     {
+      title: "CareerPilot",
+      kicker: "AI career copilot",
+      year: "2025 – 2026",
+      blurb:
+        "An AI copilot for the whole job-hunt loop: decode a job description into real responsibilities and tiered requirements, tailor a resume against it, track every application on a drag-and-drop board that files updates from your inbox, and prep for the interview — all grounded in your actual resume rather than invented experience. Every backend request is scoped to the caller's JWT, so Postgres row-level security enforces per-user isolation end to end.",
+      stack: [
+        { group: "Frontend", items: ["React 19", "TypeScript", "Vite", "React Router"] },
+        { group: "Backend", items: ["Python", "FastAPI", "LangChain"] },
+        { group: "AI", items: ["Gemini", "DeepSeek via DashScope"] },
+        { group: "Data", items: ["Supabase", "Postgres", "Row Level Security"] },
+        { group: "Deploy", items: ["Cloudflare Pages", "Render"] },
+      ],
+      repo: "https://github.com/Renee1306/career-pilot",
+      live: "https://career-pilot-my.pages.dev/",
+      liveNote: "Backend is on a free tier — the first request after idle takes ~30–60s to wake.",
+      // Save a screenshot of the CareerPilot UI to public/career-pilot.png and
+      // uncomment this line. Until then the card shows a placeholder panel
+      // rather than a broken image.
+      // image: "/career-pilot.png",
+    },
+    {
       title: "Tomato Leaf Disease Detection",
-      award: "Final Year Project — 4.0/4.0",
+      kicker: "Final Year Project — 4.0/4.0",
       year: "2024 – 2025",
       blurb:
-        "Deep learning pipeline for leaf disease classification at 98.19% accuracy. Trained and optimised four models — a custom CNN, InceptionNet, MobileNet, and a Vision Transformer — then deployed the best performer as a Flask web app with MongoDB.",
-      stack: ["TensorFlow", "Keras", "Flask", "MongoDB"],
-    },
-    {
-      title: "AI-Powered HR Platform",
-      award: "Champion — Experian Malaysia AI Hackathon 2.0",
-      year: "Oct 2024",
-      blurb:
-        "A web platform using Azure OpenAI to streamline resume screening and talent matching, built and shipped inside the competition window.",
-      stack: ["Python", "Azure OpenAI", "HTML/CSS"],
-      image: "/experian-ai-hackathon.jpeg",
-    },
-    {
-      title: "Firmware Failure Prediction",
-      award: "2nd Runner-Up — Western Digital × Monash 36H",
-      year: "Oct 2024",
-      blurb:
-        "An ML/DL web platform for firmware analysis and hardware failure prediction, built in 36 hours with a React frontend.",
-      stack: ["Python", "React", "Tailwind CSS"],
-      image: "/western-digital-monash.jpeg",
-    },
-    {
-      title: "Shariah Compliance Automation",
-      award: "1st Runner-Up — UM Hackathon 2024",
-      year: "Mar 2024",
-      blurb:
-        "Automated assessment of Shariah-compliant companies, combining Python analysis with Power Automate orchestration.",
-      stack: ["Python", "Power Automate"],
-      image: "/um-hackathon.jpeg",
+        "A deep learning pipeline that classifies tomato leaf disease from a photo at 98.19% accuracy. I trained and optimised four architectures — a custom CNN, InceptionNet, MobileNet, and a Vision Transformer — then deployed the best performer as a web app where growers can upload a leaf, get a diagnosis, and read treatment guidance.",
+      stack: [
+        { group: "Modelling", items: ["TensorFlow", "Keras", "Vision Transformer", "CNN"] },
+        { group: "App", items: ["Python", "Flask", "MongoDB", "JavaScript"] },
+      ],
+      repo: "https://github.com/Renee1306/tomato-disease",
+      live: "https://tomato-disease-nv0d.onrender.com",
+      image: "/tomato-disease.png",
     },
   ],
 };
 
 export const education = {
   eyebrow: "/education",
+  headline: "Where the fundamentals came from.",
   items: [
     {
       school: "Asia Pacific University of Technology & Innovation",
@@ -289,14 +322,25 @@ export const education = {
   ],
 };
 
-export const skills = [
-  { group: "Languages", items: ["Python", "C", "C++", "Java", "JavaScript", "Rust", "HTML", "CSS"] },
-  { group: "AI & Data", items: ["LangChain", "RAG", "TensorFlow", "Keras", "R", "SAS"] },
-  { group: "Data stores", items: ["MySQL", "MongoDB", "Oracle"] },
-  { group: "Cloud & DevOps", items: ["Azure", "Docker", "Jenkins", "Git"] },
-  { group: "Microsoft", items: ["Power BI", "Power Automate", "Microsoft 365"] },
-  { group: "Design", items: ["Figma", "Canva"] },
-];
+export const skills = {
+  eyebrow: "/skills",
+  headline: "What I reach for.",
+  groups: [
+    {
+      group: "Languages",
+      items: ["Python", "TypeScript", "JavaScript", "Java", "C", "C++", "Rust", "HTML", "CSS"],
+    },
+    {
+      group: "AI & machine learning",
+      items: ["LangChain", "RAG", "TensorFlow", "Keras", "Azure OpenAI", "Gemini", "Prompt engineering"],
+    },
+    { group: "Frameworks", items: ["FastAPI", "React", "Next.js", "Flask", "Streamlit", "Tailwind CSS"] },
+    { group: "Data", items: ["MySQL", "MongoDB", "Oracle", "Supabase", "R", "SAS", "ETL pipelines"] },
+    { group: "Cloud & DevOps", items: ["Microsoft Azure", "Docker", "Jenkins", "Git", "Render"] },
+    { group: "Microsoft & platforms", items: ["Power BI", "Power Automate", "Microsoft 365", "Salesforce"] },
+    { group: "Design", items: ["Figma", "Canva"] },
+  ],
+};
 
 export const additional = {
   languages: ["English", "Mandarin", "Malay", "Cantonese"],

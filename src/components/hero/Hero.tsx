@@ -1,13 +1,11 @@
 "use client";
 
-import Image from "next/image";
 import { useCallback, useRef, useState } from "react";
 import { motion, useMotionValue, useReducedMotion } from "framer-motion";
 import { HeroBackdrop } from "./HeroBackdrop";
 import { Portrait } from "./Portrait";
 import { BackdropPicker } from "./BackdropPicker";
-import { Marquee } from "@/components/Marquee";
-import { site, stats, highlights, type PortraitBackdropKey } from "@/content/site";
+import { site, stats, type PortraitBackdropKey } from "@/content/site";
 
 export function Hero() {
   const ref = useRef<HTMLElement>(null);
@@ -116,39 +114,6 @@ export function Hero() {
 
         <BackdropPicker value={backdropKey} onChange={setBackdropKey} />
       </motion.section>
-
-      <div className="border-y border-hairline bg-surface/50 py-5 backdrop-blur">
-        <p className="mx-auto mb-4 max-w-7xl px-6 text-sm text-muted md:px-10">
-          {highlights.heading}
-        </p>
-        <Marquee duration={70}>
-          {highlights.items.map((item) => (
-            <figure
-              key={item.title}
-              className="mx-3 w-64 shrink-0 overflow-hidden rounded-2xl bg-surface ring-1 ring-hairline md:mx-4 md:w-72"
-            >
-              <div className="relative aspect-[4/3] overflow-hidden">
-                <Image
-                  src={item.image}
-                  alt={`${item.title} — ${item.kicker}`}
-                  fill
-                  sizes="(max-width: 768px) 16rem, 18rem"
-                  className="object-cover"
-                />
-                <figcaption className="absolute left-2 top-2 rounded-full bg-background/85 px-2.5 py-1 text-xs backdrop-blur">
-                  {item.kicker}
-                </figcaption>
-              </div>
-              <div className="flex items-baseline justify-between gap-3 px-3 py-3">
-                <p className="truncate text-sm tracking-tight" title={item.title}>
-                  {item.title}
-                </p>
-                <span className="shrink-0 text-xs text-muted">{item.year}</span>
-              </div>
-            </figure>
-          ))}
-        </Marquee>
-      </div>
     </>
   );
 }
