@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { Reveal } from "@/components/Reveal";
 import { work } from "@/content/site";
 
@@ -41,6 +42,25 @@ export function Work() {
                   </span>
                 ))}
               </div>
+
+              {item.images && (
+                <div className="mt-8 grid gap-3 sm:grid-cols-2">
+                  {item.images.map((photo) => (
+                    <div
+                      key={photo.src}
+                      className="relative aspect-[4/3] overflow-hidden rounded-2xl ring-1 ring-hairline"
+                    >
+                      <Image
+                        src={photo.src}
+                        alt={photo.alt}
+                        fill
+                        sizes="(max-width: 640px) 100vw, 320px"
+                        className="object-cover transition duration-500 hover:scale-[1.03]"
+                      />
+                    </div>
+                  ))}
+                </div>
+              )}
             </li>
           </Reveal>
         ))}

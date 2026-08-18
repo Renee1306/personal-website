@@ -64,14 +64,54 @@ export const stats = [
 export const highlights = {
   heading: "Competition record:",
   items: [
-    { kicker: "Champion", title: "Experian Malaysia AI Hackathon 2.0" },
-    { kicker: "2nd Runner-Up", title: "Western Digital × Monash 36H Hackathon" },
-    { kicker: "1st Runner-Up", title: "UM Hackathon 2024" },
-    { kicker: "Research Excellence", title: "I-PHAMATHON 2024" },
-    { kicker: "2nd Runner-Up", title: "DHL × UTM Sustainable Food Nexus" },
-    { kicker: "Champion", title: "Intervarsity Think Tank 2023" },
-    { kicker: "2nd Runner-Up", title: "BAT × APU Ideathon 2023" },
-    { kicker: "2nd Runner-Up", title: "APU Startup Weekend 2023" },
+    {
+      kicker: "Champion",
+      title: "Experian Malaysia AI Hackathon 2.0",
+      year: "2024",
+      image: "/experian-ai-hackathon.jpeg",
+    },
+    {
+      kicker: "2nd Runner-Up",
+      title: "Western Digital × Monash 36H Hackathon",
+      year: "2024",
+      image: "/western-digital-monash.jpeg",
+    },
+    {
+      kicker: "1st Runner-Up",
+      title: "UM Hackathon 2024",
+      year: "2024",
+      image: "/um-hackathon.jpeg",
+    },
+    {
+      kicker: "Research Excellence",
+      title: "I-PHAMATHON 2024",
+      year: "2024",
+      image: "/iphamathon.jpeg",
+    },
+    {
+      kicker: "2nd Runner-Up",
+      title: "DHL × UTM Sustainable Food Nexus",
+      year: "2023",
+      image: "/dhl-utm-food-nexus.jpeg",
+    },
+    {
+      kicker: "Champion",
+      title: "Intervarsity Think Tank 2023",
+      year: "2023",
+      image: "/intervarsity-think-tank.jpeg",
+    },
+    {
+      kicker: "2nd Runner-Up",
+      title: "BAT × APU Ideathon 2023",
+      year: "2023",
+      image: "/bat-apu-ideathon.jpeg",
+    },
+    {
+      kicker: "2nd Runner-Up",
+      title: "APU Startup Weekend 2023",
+      year: "2023",
+      image: "/apu-startup-weekend.jpeg",
+    },
   ],
 };
 
@@ -106,6 +146,7 @@ export type WorkItem = {
   blurb: string;
   bullets: string[];
   tags: string[];
+  images?: { src: string; alt: string }[];
 };
 
 export const work: WorkItem[] = [
@@ -122,6 +163,10 @@ export const work: WorkItem[] = [
       "Deployed on Microsoft Azure with Docker containerization and Jenkins CI/CD pipelines.",
     ],
     tags: ["LangChain", "RAG", "FastAPI", "Azure"],
+    images: [
+      { src: "/experian-teambuilding.jpeg", alt: "Renee with the Experian team at a team-building day" },
+      { src: "/experian-intern-2.jpeg", alt: "Renee at the Experian Malaysia office" },
+    ],
   },
   {
     title: "Data Analyst Intern",
@@ -135,6 +180,7 @@ export const work: WorkItem[] = [
       "Engineered GenAI prompts and built ETL pipelines to enhance automation and AI model integration.",
     ],
     tags: ["Python", "ETL", "Credit risk"],
+    images: [{ src: "/experian-intern.jpeg", alt: "Renee during her internship at Experian Malaysia" }],
   },
   {
     title: "HR Analyst Intern",
@@ -148,6 +194,10 @@ export const work: WorkItem[] = [
       "Led a departmental hackathon, training 14 colleagues on Power Automate for workflow automation.",
     ],
     tags: ["Power Automate", "Salesforce", "VBA"],
+    images: [
+      { src: "/estee-intern.jpeg", alt: "Renee during her internship at Estée Lauder Companies Malaysia" },
+      { src: "/estee-intern-2.jpeg", alt: "Renee with colleagues at Estée Lauder Companies Malaysia" },
+    ],
   },
   {
     title: "Creative Marketing Co-Lead",
@@ -164,7 +214,21 @@ export const work: WorkItem[] = [
   },
 ];
 
-export const projects = {
+export type ProjectItem = {
+  title: string;
+  award: string;
+  year: string;
+  blurb: string;
+  stack: string[];
+  image?: string;
+};
+
+export const projects: {
+  eyebrow: string;
+  headline: string;
+  body: string;
+  items: ProjectItem[];
+} = {
   eyebrow: "/projects",
   headline: "Research, final year work, and things built under a 36-hour clock.",
   body: "Most of these started as competition entries. The constraint I like about hackathons: you cannot fake a working demo at 4am.",
@@ -184,6 +248,7 @@ export const projects = {
       blurb:
         "A web platform using Azure OpenAI to streamline resume screening and talent matching, built and shipped inside the competition window.",
       stack: ["Python", "Azure OpenAI", "HTML/CSS"],
+      image: "/experian-ai-hackathon.jpeg",
     },
     {
       title: "Firmware Failure Prediction",
@@ -192,6 +257,7 @@ export const projects = {
       blurb:
         "An ML/DL web platform for firmware analysis and hardware failure prediction, built in 36 hours with a React frontend.",
       stack: ["Python", "React", "Tailwind CSS"],
+      image: "/western-digital-monash.jpeg",
     },
     {
       title: "Shariah Compliance Automation",
@@ -200,6 +266,7 @@ export const projects = {
       blurb:
         "Automated assessment of Shariah-compliant companies, combining Python analysis with Power Automate orchestration.",
       stack: ["Python", "Power Automate"],
+      image: "/um-hackathon.jpeg",
     },
   ],
 };

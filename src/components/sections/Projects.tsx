@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { Carousel } from "@/components/Carousel";
 import { Reveal } from "@/components/Reveal";
 import { projects } from "@/content/site";
@@ -20,24 +21,38 @@ export function Projects() {
           {projects.items.map((item) => (
             <article
               key={item.title}
-              className="flex h-full min-h-[420px] flex-col justify-between rounded-3xl border border-hairline bg-surface p-8"
+              className="flex h-full min-h-[420px] flex-col justify-between overflow-hidden rounded-3xl border border-hairline bg-surface"
             >
-              <div>
-                <p className="text-sm text-accent">{item.award}</p>
-                <h3 className="mt-4 text-3xl tracking-tight">{item.title}</h3>
-                <p className="mt-1 text-sm text-muted">{item.year}</p>
-                <p className="mt-6 leading-relaxed text-muted">{item.blurb}</p>
-              </div>
+              {item.image && (
+                <div className="relative aspect-[4/3] w-full overflow-hidden">
+                  <Image
+                    src={item.image}
+                    alt={`${item.title} — ${item.award}`}
+                    fill
+                    sizes="(max-width: 640px) 86vw, 420px"
+                    className="object-cover"
+                  />
+                </div>
+              )}
 
-              <div className="mt-8 flex flex-wrap gap-2">
-                {item.stack.map((tech) => (
-                  <span
-                    key={tech}
-                    className="rounded-full border border-hairline px-3 py-1 text-xs text-muted"
-                  >
-                    {tech}
-                  </span>
-                ))}
+              <div className="flex flex-1 flex-col justify-between p-8">
+                <div>
+                  <p className="text-sm text-accent">{item.award}</p>
+                  <h3 className="mt-4 text-3xl tracking-tight">{item.title}</h3>
+                  <p className="mt-1 text-sm text-muted">{item.year}</p>
+                  <p className="mt-6 leading-relaxed text-muted">{item.blurb}</p>
+                </div>
+
+                <div className="mt-8 flex flex-wrap gap-2">
+                  {item.stack.map((tech) => (
+                    <span
+                      key={tech}
+                      className="rounded-full border border-hairline px-3 py-1 text-xs text-muted"
+                    >
+                      {tech}
+                    </span>
+                  ))}
+                </div>
               </div>
             </article>
           ))}

@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { useCallback, useRef, useState } from "react";
 import { motion, useMotionValue, useReducedMotion } from "framer-motion";
 import { HeroBackdrop } from "./HeroBackdrop";
@@ -120,14 +121,31 @@ export function Hero() {
         <p className="mx-auto mb-4 max-w-7xl px-6 text-sm text-muted md:px-10">
           {highlights.heading}
         </p>
-        <Marquee duration={55}>
+        <Marquee duration={70}>
           {highlights.items.map((item) => (
-            <div key={item.title} className="mx-6 flex items-baseline gap-3 whitespace-nowrap md:mx-10">
-              <span className="rounded-full border border-hairline px-3 py-1 text-xs text-muted">
-                {item.kicker}
-              </span>
-              <span className="text-2xl tracking-tight md:text-3xl">{item.title}</span>
-            </div>
+            <figure
+              key={item.title}
+              className="mx-3 w-64 shrink-0 overflow-hidden rounded-2xl bg-surface ring-1 ring-hairline md:mx-4 md:w-72"
+            >
+              <div className="relative aspect-[4/3] overflow-hidden">
+                <Image
+                  src={item.image}
+                  alt={`${item.title} — ${item.kicker}`}
+                  fill
+                  sizes="(max-width: 768px) 16rem, 18rem"
+                  className="object-cover"
+                />
+                <figcaption className="absolute left-2 top-2 rounded-full bg-background/85 px-2.5 py-1 text-xs backdrop-blur">
+                  {item.kicker}
+                </figcaption>
+              </div>
+              <div className="flex items-baseline justify-between gap-3 px-3 py-3">
+                <p className="truncate text-sm tracking-tight" title={item.title}>
+                  {item.title}
+                </p>
+                <span className="shrink-0 text-xs text-muted">{item.year}</span>
+              </div>
+            </figure>
           ))}
         </Marquee>
       </div>
