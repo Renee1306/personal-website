@@ -16,7 +16,7 @@ export function HackathonDeck({ items }: { items: Hackathon[] }) {
       {/* The fanned deck. Each card is offset from the active one, so selecting a
           card re-fans the whole spread around it. The fan is wider than the
           viewport on purpose, so it has to clip rather than extend the page. */}
-      <div className="relative h-[22rem] select-none overflow-hidden sm:h-[26rem]">
+      <div className="relative h-[26rem] select-none overflow-hidden sm:h-[34rem]">
         {items.map((item, i) => {
           const offset = i - activeIndex;
           const isActive = offset === 0;
@@ -29,11 +29,11 @@ export function HackathonDeck({ items }: { items: Hackathon[] }) {
               onClick={() => setActiveIndex(i)}
               aria-label={`${item.title} — ${item.award}`}
               aria-pressed={isActive}
-              className="absolute left-1/2 top-6 h-64 w-44 origin-bottom cursor-pointer rounded-3xl focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent sm:h-80 sm:w-56"
+              className="absolute left-1/2 top-6 h-[19rem] w-56 origin-bottom cursor-pointer rounded-3xl focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent sm:h-[27rem] sm:w-[19rem]"
               initial={false}
               animate={{
                 // Fan tightens on narrow screens so neighbouring cards stay on-screen.
-                x: `calc(-50% + ${offset} * clamp(24px, 6vw, 62px))`,
+                x: `calc(-50% + ${offset} * clamp(30px, 7vw, 84px))`,
                 y: isActive ? -18 : distance * 10,
                 rotate: offset * 7,
                 scale: isActive ? 1 : 1 - Math.min(distance, 4) * 0.05,
@@ -53,11 +53,14 @@ export function HackathonDeck({ items }: { items: Hackathon[] }) {
                   src={item.image}
                   alt=""
                   fill
-                  sizes="(max-width: 640px) 11rem, 14rem"
+                  // Generous sizes + quality: the card is small, but a soft image
+                  // on a high-DPI screen is exactly what this section can't afford.
+                  sizes="(max-width: 640px) 70vw, 640px"
+                  quality={90}
                   className="object-cover"
                 />
-                {/* Legibility scrim for the caption */}
-                <span className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/10 to-transparent" />
+                {/* Legibility scrim for the caption — kept shallow so the photo reads */}
+                <span className="absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-black/75 to-transparent" />
 
                 <span className="absolute inset-x-3 bottom-3 block text-left">
                   <span className="block text-[10px] uppercase tracking-widest text-white/75">
@@ -68,7 +71,7 @@ export function HackathonDeck({ items }: { items: Hackathon[] }) {
                   </span>
                 </span>
 
-                {!isActive && <span className="absolute inset-0 bg-background/25" />}
+                {!isActive && <span className="absolute inset-0 bg-background/15" />}
               </span>
             </motion.button>
           );

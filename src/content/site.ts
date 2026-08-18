@@ -61,11 +61,15 @@ export const site = {
   ],
 };
 
-export const stats = [
-  { value: "8×", label: ["Hackathon", "podiums"] },
-  { value: "3.81", label: ["CGPA", "/ 4.0"] },
-  { value: "98%", label: ["Extraction", "accuracy at scale"] },
-];
+/** Scrolls endlessly behind the hero portrait. */
+export const heroMarqueeWord = "PORTFOLIO";
+
+/** The oversized type flanking the hero portrait. */
+export const heroType = {
+  lead: "I am",
+  name: ["Renee", "Nyong"],
+  role: ["Gen AI", "Developer"],
+};
 
 export type Hackathon = {
   title: string;
@@ -148,8 +152,13 @@ export const hackathons: {
 
 export const about = {
   eyebrow: "/about",
-  headline: "I build generative AI systems that make it to production.",
-  body: "I'm a Junior Generative AI Application Developer at Experian Malaysia, where I build multi-agent chatbots, RAG pipelines, and document extraction systems running across APAC, UKI, EMEA, and North America. I came up through data analytics — a First Class Computer Science degree, a 4.0 final year project, and eight hackathon podiums — and I still care most about the part where a model stops being a demo and starts being infrastructure.",
+  headline: "Curious mind. Constant builder. AI enthusiast.",
+  greeting: "Hey, I'm Renee 👋",
+  paragraphs: [
+    "I build things with AI, code, and way too many ideas.",
+    "By day, I work on Generative AI applications. By night, I'm usually building something that probably started with “wait… what if I…”",
+    "I like experimenting, breaking things, and figuring out how to make technology feel a little more human.",
+  ],
 };
 
 export const clients = [
@@ -230,19 +239,6 @@ export const work: WorkItem[] = [
       { src: "/estee-intern-2.jpeg", alt: "Renee with colleagues at Estée Lauder Companies Malaysia" },
     ],
   },
-  {
-    title: "Creative Marketing Co-Lead",
-    org: "Google Developer Student Club, APU",
-    years: "Nov 2023 – Nov 2024",
-    blurb:
-      "Grew one of Malaysia's largest student developer communities, then ran marketing for its flagship hackathon.",
-    bullets: [
-      "Designed tech event branding and developed marketing strategy, attracting 2,000+ new members.",
-      "As Marketing Lead for Google Workspace Hackathon 2024, led a team of 5 and grew the event Instagram from 0 to 1,800+ followers.",
-      "Secured 330 registered groups and 180 final project submissions.",
-    ],
-    tags: ["Community", "Branding", "Leadership"],
-  },
 ];
 
 export type ProjectItem = {
@@ -262,12 +258,10 @@ export type ProjectItem = {
 export const projects: {
   eyebrow: string;
   headline: string;
-  body: string;
   items: ProjectItem[];
 } = {
   eyebrow: "/projects",
   headline: "Things I built end to end, from model to deployed interface.",
-  body: "Both of these are public on GitHub and running live — the code, the deploy, and the design decisions are all mine to defend.",
   items: [
     {
       title: "CareerPilot",
@@ -352,5 +346,4 @@ export const cta = {
   eyebrow: "/contact",
   headline: "Let's build something worth shipping",
   words: ["build", "automate", "analyse", "deploy", "iterate"],
-  footerText: "SHIP • SOMETHING • REAL • EVERY • SINGLE • DAY",
 };

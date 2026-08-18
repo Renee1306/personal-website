@@ -15,8 +15,16 @@ export function About() {
       </Reveal>
 
       <Reveal delay={0.1}>
-        <p className="mt-8 max-w-2xl text-lg leading-relaxed text-muted">{about.body}</p>
+        <p className="mt-10 text-2xl tracking-tight md:text-3xl">{about.greeting}</p>
       </Reveal>
+
+      <div className="mt-6 max-w-2xl space-y-5">
+        {about.paragraphs.map((paragraph, i) => (
+          <Reveal key={paragraph} delay={0.12 + i * 0.05}>
+            <p className="text-lg leading-relaxed text-muted">{paragraph}</p>
+          </Reveal>
+        ))}
+      </div>
 
       <Reveal delay={0.2}>
         <ul className="mt-20 grid gap-x-8 gap-y-6 sm:grid-cols-2 lg:grid-cols-4">

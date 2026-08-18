@@ -1,5 +1,4 @@
-import { CurvedText } from "@/components/CurvedText";
-import { cta, site } from "@/content/site";
+import { site } from "@/content/site";
 
 const icons = {
   x: "M18.9 2H22l-7 8 8.2 12h-6.4l-5-7.3L5.9 22H2.8l7.5-8.6L2.4 2h6.6l4.5 6.6L18.9 2Zm-1.1 18h1.8L7.4 3.9H5.5L17.8 20Z",
@@ -11,9 +10,7 @@ const icons = {
 
 export function Footer() {
   return (
-    <footer className="mx-auto flex max-w-7xl flex-col items-center gap-12 px-6 py-24 md:px-10">
-      <CurvedText text={cta.footerText} />
-
+    <footer className="mx-auto flex max-w-7xl flex-col items-center gap-12 px-6 py-16 md:px-10">
       <div className="flex w-full flex-col items-center justify-between gap-6 border-t border-hairline pt-8 sm:flex-row">
         <p className="text-sm text-muted">
           © {new Date().getFullYear()} {site.name}

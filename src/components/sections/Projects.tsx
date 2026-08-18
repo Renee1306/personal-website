@@ -15,10 +15,6 @@ export function Projects() {
         </h2>
       </Reveal>
 
-      <Reveal delay={0.1}>
-        <p className="mt-6 max-w-xl text-lg leading-relaxed text-muted">{projects.body}</p>
-      </Reveal>
-
       <div className="mt-16 space-y-6">
         {projects.items.map((item, i) => (
           <Reveal key={item.title} delay={i * 0.05}>
