@@ -43,7 +43,7 @@ export function Hero() {
         onPointerLeave={handlePointerLeave}
         className="relative isolate flex min-h-dvh flex-col overflow-hidden"
       >
-        <HeroBackdrop pointerX={pointerX} pointerY={pointerY} />
+        <HeroBackdrop />
 
         {/* Top bar */}
         <div className="relative z-10 flex items-start justify-between gap-6 px-6 py-6 md:px-10">
@@ -77,29 +77,32 @@ export function Hero() {
           </nav>
         </div>
 
-        {/* Portrait flanked by oversized type, over an endless word marquee */}
-        <div className="relative flex flex-1 items-center px-6 py-6 md:px-10">
-          <div aria-hidden className="pointer-events-none absolute inset-0 flex items-center">
-            <Marquee duration={38} className="w-full">
-              {/* Repeated so the loop never shows a gap on wide screens. */}
-              {[0, 1, 2].map((i) => (
-                <span
-                  key={i}
-                  className="mx-5 whitespace-nowrap text-[clamp(5rem,20vw,17rem)] font-medium leading-none tracking-[-0.04em] text-foreground/[0.07]"
-                >
-                  {heroMarqueeWord}
-                </span>
-              ))}
-            </Marquee>
-          </div>
+        {/* The only thing moving behind the portrait */}
+        <div aria-hidden className="pointer-events-none absolute inset-0 flex items-center">
+          <Marquee duration={38} className="w-full">
+            {/* Repeated so the loop never shows a gap on wide screens. */}
+            {[0, 1, 2].map((i) => (
+              <span
+                key={i}
+                className="mx-5 whitespace-nowrap text-[clamp(5rem,20vw,17rem)] font-medium leading-none tracking-[-0.04em] text-foreground/[0.07]"
+              >
+                {heroMarqueeWord}
+              </span>
+            ))}
+          </Marquee>
+        </div>
 
-          <div className="relative z-10 mx-auto">
+        {/* Portrait. In flow on phones; lifted out of flow from lg up so it can be
+            large without pushing the name below the fold. The name and role sit to
+            either side of it, and above it in z-order where they meet. */}
+        <div className="relative z-10 flex flex-1 items-center justify-center px-6 md:px-10 lg:static lg:block lg:flex-1 lg:px-0">
+          <div className="lg:absolute lg:left-1/2 lg:top-1/2 lg:-translate-x-1/2 lg:-translate-y-1/2">
             <Portrait pointerX={pointerX} pointerY={pointerY} backdropKey={backdropKey} />
           </div>
         </div>
 
         {/* Oversized name and role, anchored to the bottom of the viewport */}
-        <div className="relative z-10 flex flex-col gap-8 px-6 pb-8 md:px-10 lg:flex-row lg:items-end lg:justify-between lg:gap-10">
+        <div className="relative z-20 flex flex-col gap-8 px-6 pb-8 md:px-10 lg:flex-row lg:items-end lg:justify-between lg:gap-10">
           {/* Sized against viewport height as well as width, so the name still
               clears the fold on short laptop screens. */}
           <h1 className="text-[max(3rem,min(13vw,9rem,18vh))] font-semibold uppercase leading-[0.82] tracking-[-0.045em]">
