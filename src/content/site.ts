@@ -37,9 +37,11 @@ export const site = {
   metaDescription:
     "Renee Nyong is a Generative AI application developer at Experian Malaysia, building multi-agent LLM systems, RAG pipelines, and data products that ship.",
   email: "reneenyong3@gmail.com",
-  // Versioned filename: browsers cache /_next/image aggressively by URL, so
-  // replacing the picture means bumping this name (portrait-v3.png, etc.).
-  portrait: "/portrait-v2.png",
+  // Browsers cache /_next/image aggressively by URL, so replacing a picture
+  // means changing the filename too — editing the file in place is not enough.
+  portrait: "/portrait-main.jpg",
+  /** Crossfades in while the cursor is over the portrait. Omit to disable the swap. */
+  portraitHover: "/portrait-hover.jpg",
   /**
    * Set true when the image already contains its own background (e.g. a stylised
    * portrait with a gradient baked in) — it then fills the oval edge to edge and

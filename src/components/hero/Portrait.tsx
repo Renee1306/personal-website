@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import { useState } from "react";
 import { motion, useMotionTemplate, useSpring, useTransform, type MotionValue } from "framer-motion";
 import { portraitBackdrops, site, type PortraitBackdropKey } from "@/content/site";
 
@@ -18,6 +19,7 @@ export function Portrait({
 }) {
   const backdrop = portraitBackdrops[backdropKey];
   const ownBackground = site.portraitHasOwnBackground;
+  const [hovered, setHovered] = useState(false);
 
   // The frame tilts toward the cursor; the photo inside drifts slightly further,
   // which is what sells the depth.
@@ -36,6 +38,10 @@ export function Portrait({
   return (
     <motion.div
       style={{ rotateX, rotateY, transformPerspective: 1200 }}
+      onPointerEnter={(e) => e.pointerType === "mouse" && setHovered(true)}
+      onPointerLeave={() => setHovered(false)}
+      // Touch has no hover, so a tap toggles the second portrait instead.
+      onClick={() => setHovered((v) => !v)}
       className="relative aspect-[3/4] w-[min(78vw,26rem)] [transform-style:preserve-3d]"
     >
       <div className="absolute inset-0 overflow-hidden rounded-full">
@@ -51,6 +57,26 @@ export function Portrait({
               sizes="(max-width: 768px) 78vw, 26rem"
               className="object-cover object-top"
             />
+
+            {site.portraitHover && (
+              // Plain CSS crossfade — cheaper than a motion layer for a fade, and
+              // the class flip makes the hover state inspectable.
+              <div
+                data-portrait-hover={hovered ? "on" : "off"}
+                className={`absolute inset-0 transition-opacity duration-500 ease-out ${
+                  hovered ? "opacity-100" : "opacity-0"
+                }`}
+              >
+                <Image
+                  src={site.portraitHover}
+                  alt=""
+                  aria-hidden
+                  fill
+                  sizes="(max-width: 768px) 78vw, 26rem"
+                  className="object-cover object-top"
+                />
+              </div>
+            )}
           </motion.div>
         ) : (
           <>
