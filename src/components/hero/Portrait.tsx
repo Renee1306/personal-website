@@ -42,7 +42,9 @@ export function Portrait({
       onPointerLeave={() => setHovered(false)}
       // Touch has no hover, so a tap toggles the second portrait instead.
       onClick={() => setHovered((v) => !v)}
-      className="relative aspect-[3/4] w-[min(78vw,26rem)] [transform-style:preserve-3d]"
+      // Width-driven on phones; height-driven from lg up so the oversized name
+      // below it still fits inside one viewport.
+      className="relative aspect-[3/4] w-[min(72vw,20rem)] [transform-style:preserve-3d] lg:h-[min(40vh,30rem)] lg:w-auto"
     >
       <div className="absolute inset-0 overflow-hidden rounded-full">
         {ownBackground ? (

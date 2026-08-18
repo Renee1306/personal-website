@@ -93,23 +93,38 @@ export function Hero() {
             </Marquee>
           </div>
 
-          <div className="relative z-10 grid w-full items-center gap-6 lg:grid-cols-[1fr_auto_1fr] lg:gap-4">
-            <h1 className="text-[clamp(2.5rem,9vw,6rem)] font-semibold uppercase leading-[0.85] tracking-[-0.045em] lg:justify-self-start">
-              <span className="block text-[0.42em] font-medium tracking-[0.06em] text-muted">
-                {heroType.lead}
+          <div className="relative z-10 mx-auto">
+            <Portrait pointerX={pointerX} pointerY={pointerY} backdropKey={backdropKey} />
+          </div>
+        </div>
+
+        {/* Oversized name and role, anchored to the bottom of the viewport */}
+        <div className="relative z-10 flex flex-col gap-8 px-6 pb-8 md:px-10 lg:flex-row lg:items-end lg:justify-between lg:gap-10">
+          {/* Sized against viewport height as well as width, so the name still
+              clears the fold on short laptop screens. */}
+          <h1 className="text-[max(3rem,min(13vw,9rem,18vh))] font-semibold uppercase leading-[0.82] tracking-[-0.045em]">
+            <span className="mb-1 block text-[0.2em] font-medium tracking-[0.18em] text-muted">
+              {heroType.lead}
+            </span>
+            {heroType.name.map((line) => (
+              <span key={line} className="block">
+                {line}
               </span>
-              {heroType.name.map((line) => (
-                <span key={line} className="block">
-                  {line}
-                </span>
-              ))}
-            </h1>
+            ))}
+          </h1>
 
-            <div className="justify-self-center">
-              <Portrait pointerX={pointerX} pointerY={pointerY} backdropKey={backdropKey} />
-            </div>
+          <div className="flex items-end gap-5">
+            <a
+              href="#about"
+              aria-label="Scroll to about"
+              className="mb-1 flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-surface shadow-sm ring-1 ring-hairline transition hover:bg-foreground hover:text-background"
+            >
+              <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="1.6">
+                <path d="M12 5v14M6 13l6 6 6-6" strokeLinecap="round" strokeLinejoin="round" />
+              </svg>
+            </a>
 
-            <p className="text-[clamp(1.75rem,5.5vw,3.25rem)] font-semibold uppercase leading-[0.9] tracking-[-0.03em] lg:justify-self-end lg:text-right">
+            <p className="text-[max(1.5rem,min(6vw,4rem,9vh))] font-semibold uppercase leading-[0.86] tracking-[-0.035em] lg:text-right">
               {heroType.role.map((line) => (
                 <span key={line} className="block">
                   {line}
@@ -117,19 +132,6 @@ export function Hero() {
               ))}
             </p>
           </div>
-        </div>
-
-        {/* Bottom bar */}
-        <div className="relative z-10 px-6 pb-8 md:px-10">
-          <a
-            href="#about"
-            aria-label="Scroll to about"
-            className="flex h-11 w-11 items-center justify-center rounded-full bg-surface shadow-sm ring-1 ring-hairline transition hover:bg-foreground hover:text-background"
-          >
-            <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="1.6">
-              <path d="M12 5v14M6 13l6 6 6-6" strokeLinecap="round" strokeLinejoin="round" />
-            </svg>
-          </a>
         </div>
 
         <BackdropPicker value={backdropKey} onChange={setBackdropKey} />
