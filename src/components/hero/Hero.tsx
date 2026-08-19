@@ -6,6 +6,7 @@ import { HeroBackdrop } from "./HeroBackdrop";
 import { Portrait } from "./Portrait";
 import { BackdropPicker } from "./BackdropPicker";
 import { Marquee } from "@/components/Marquee";
+import { ThemeToggle } from "@/components/ThemeToggle";
 import { site, heroMarqueeWord, heroType, type PortraitBackdropKey } from "@/content/site";
 
 export function Hero() {
@@ -74,6 +75,7 @@ export function Hero() {
               </span>
               Available for work
             </a>
+            <ThemeToggle />
           </nav>
         </div>
 

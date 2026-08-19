@@ -4,7 +4,7 @@ import Image from "next/image";
 import { useState } from "react";
 import { motion } from "framer-motion";
 
-type Photo = { src: string; alt: string };
+type Photo = { src: string; alt: string; caption: string };
 
 // Each card in the stack sits at a slightly different angle and offset so the
 // pile reads as physical polaroids rather than a stack of identical rectangles.
@@ -69,7 +69,7 @@ export function PhotoStack({ photos, label }: { photos: Photo[]; label: string }
                 />
               </span>
               <span className="pointer-events-none absolute bottom-3 left-3 rounded-full bg-background/85 px-2.5 py-1 text-[10px] uppercase tracking-widest text-muted backdrop-blur">
-                Field note
+                {photo.caption}
               </span>
             </motion.span>
           );

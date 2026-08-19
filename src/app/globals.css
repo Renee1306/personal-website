@@ -8,10 +8,44 @@
   --surface: #ffffff;
   --accent: #2f5bff;
   /* Fill for the slide-to-reveal email control. */
-  --reveal: #ef9247;
+  --reveal: #2fbf71;
   --blob-a: #7b6cff;
   --blob-b: #ff8a5c;
   --blob-c: #38d6c4;
+  /* Hero grid lines — tied to foreground so they stay faint in both themes. */
+  --grid-line: rgba(13, 13, 13, 0.055);
+}
+
+/* Manual override wins; when neither class is present, .dark still applies via
+   prefers-color-scheme below so the site respects the OS setting on first load. */
+.dark {
+  --background: #0c0c0e;
+  --foreground: #f2f1ee;
+  --muted: #9a9a9a;
+  --hairline: rgba(245, 244, 241, 0.14);
+  --surface: #18181b;
+  --accent: #7f9dff;
+  --reveal: #2fbf71;
+  --blob-a: #6a5ae0;
+  --blob-b: #d97848;
+  --blob-c: #2bb3a3;
+  --grid-line: rgba(245, 244, 241, 0.07);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not(.light) {
+    --background: #0c0c0e;
+    --foreground: #f2f1ee;
+    --muted: #9a9a9a;
+    --hairline: rgba(245, 244, 241, 0.14);
+    --surface: #18181b;
+    --accent: #7f9dff;
+    --reveal: #2fbf71;
+    --blob-a: #6a5ae0;
+    --blob-b: #d97848;
+    --blob-c: #2bb3a3;
+    --grid-line: rgba(245, 244, 241, 0.07);
+  }
 }
 
 @theme inline {
@@ -31,6 +65,7 @@ html {
 
 body {
   font-family: var(--font-display), sans-serif;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 /* Keep anchored sections clear of the floating nav. */

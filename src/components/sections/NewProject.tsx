@@ -2,6 +2,7 @@ import { GradientBlobs } from "@/components/GradientBlobs";
 import { Marquee } from "@/components/Marquee";
 import { Reveal } from "@/components/Reveal";
 import { RevealEmail } from "@/components/RevealEmail";
+import { SocialLinks } from "@/components/SocialLinks";
 import { cta, site } from "@/content/site";
 
 export function NewProject() {
@@ -22,6 +23,10 @@ export function NewProject() {
 
         <Reveal delay={0.1} className="mt-12">
           <RevealEmail email={site.email} />
+        </Reveal>
+
+        <Reveal delay={0.15} className="mt-8">
+          <SocialLinks />
         </Reveal>
       </div>
 

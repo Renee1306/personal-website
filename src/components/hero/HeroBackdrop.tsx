@@ -9,7 +9,7 @@ export function HeroBackdrop() {
         className="absolute inset-0 opacity-[0.55]"
         style={{
           backgroundImage:
-            "linear-gradient(to right, rgba(13,13,13,0.055) 1px, transparent 1px), linear-gradient(to bottom, rgba(13,13,13,0.055) 1px, transparent 1px)",
+            "linear-gradient(to right, var(--grid-line) 1px, transparent 1px), linear-gradient(to bottom, var(--grid-line) 1px, transparent 1px)",
           backgroundSize: "64px 64px",
         }}
       />

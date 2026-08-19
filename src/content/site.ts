@@ -186,7 +186,7 @@ export type WorkItem = {
   blurb: string;
   bullets: string[];
   tags: string[];
-  images?: { src: string; alt: string }[];
+  images?: { src: string; alt: string; caption: string }[];
 };
 
 export const work: WorkItem[] = [
@@ -202,10 +202,18 @@ export const work: WorkItem[] = [
       "Developed FastAPI backend services with RESTful APIs and Swagger docs, plus Streamlit frontends for interactive AI applications.",
       "Deployed on Microsoft Azure with Docker containerization and Jenkins CI/CD pipelines.",
     ],
-    tags: ["LangChain", "RAG", "FastAPI", "Azure"],
+    tags: ["Python", "LangChain", "RAG", "MCP", "FastAPI", "Streamlit", "Azure", "Docker", "Jenkins"],
     images: [
-      { src: "/experian-ai.jpeg", alt: "Renee with colleagues in a meeting room at Experian Malaysia" },
-      { src: "/experian-ai-2.jpeg", alt: "Renee at the Experian Malaysia team-building day, January 2026" },
+      {
+        src: "/experian-ai.jpeg",
+        alt: "Renee with her manager at Experian Malaysia",
+        caption: "With my manager",
+      },
+      {
+        src: "/experian-ai-2.jpeg",
+        alt: "Renee at the Experian Malaysia finance team's team-building day, January 2026",
+        caption: "Finance team building",
+      },
     ],
   },
   {
@@ -221,8 +229,16 @@ export const work: WorkItem[] = [
     ],
     tags: ["Python", "ETL", "Credit risk"],
     images: [
-      { src: "/experian-intern.jpeg", alt: "Renee with fellow interns at the Experian Malaysia office" },
-      { src: "/experian-intern-2.jpeg", alt: "Renee outside the Experian Malaysia office" },
+      {
+        src: "/experian-intern.jpeg",
+        alt: "Renee with her team at the Experian Malaysia office",
+        caption: "Team photo",
+      },
+      {
+        src: "/experian-intern-2.jpeg",
+        alt: "Renee outside the Experian Malaysia office, with the Experian signage",
+        caption: "Outside the office",
+      },
     ],
   },
   {
@@ -238,8 +254,16 @@ export const work: WorkItem[] = [
     ],
     tags: ["Power Automate", "Salesforce", "VBA"],
     images: [
-      { src: "/estee-intern.jpeg", alt: "Renee during her internship at Estée Lauder Companies Malaysia" },
-      { src: "/estee-intern-2.jpeg", alt: "Renee with colleagues at Estée Lauder Companies Malaysia" },
+      {
+        src: "/estee-intern.jpeg",
+        alt: "Renee with her team at Estée Lauder Companies Malaysia",
+        caption: "Team photo",
+      },
+      {
+        src: "/estee-intern-2.jpeg",
+        alt: "Renee leading a Power Automate training session at Estée Lauder Companies Malaysia",
+        caption: "Power Automate training",
+      },
     ],
   },
 ];

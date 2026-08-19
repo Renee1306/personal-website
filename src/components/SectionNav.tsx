@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { sections, type SectionId } from "@/content/site";
+import { ThemeToggle } from "@/components/ThemeToggle";
 
 // Where the "playhead" sits in the viewport. The active section is the last one
 // whose top edge has passed this line.
@@ -74,7 +75,7 @@ export function SectionNav() {
           exit={{ opacity: 0, y: -16 }}
           transition={{ duration: 0.28, ease: [0.22, 1, 0.36, 1] }}
           aria-label="Section navigation"
-          className="fixed inset-x-0 top-4 z-50 flex justify-center px-4"
+          className="fixed inset-x-0 top-4 z-50 flex items-center justify-center gap-2 px-4"
         >
           {/* Seven items overflow a narrow phone, so the pill scrolls horizontally there. */}
           <ul className="flex max-w-full items-center gap-1 overflow-x-auto rounded-full bg-surface/85 p-1.5 shadow-lg ring-1 ring-hairline backdrop-blur-md [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
@@ -102,6 +103,7 @@ export function SectionNav() {
               );
             })}
           </ul>
+          <ThemeToggle size="sm" className="bg-surface/85 shadow-lg backdrop-blur-md" />
         </motion.nav>
       )}
     </AnimatePresence>
