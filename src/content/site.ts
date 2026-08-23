@@ -322,6 +322,24 @@ export const projects: {
       live: "https://tomato-disease-nv0d.onrender.com",
       image: "/tomato-disease.png",
     },
+    {
+      title: "HireNet",
+      kicker: "AI hiring pipeline",
+      year: "2025 – 2026",
+      blurb:
+        "An AI-powered HR platform that automates the hiring pipeline end to end: parsing and standardising resumes from PDF/DOCX, extracting structured job requirements, ranking candidates against them with Gemini, validating GitHub skills, and running an applicant tracker with interview scheduling and email notifications — cutting a process that typically takes ~44 days.",
+      stack: [
+        { group: "Frontend", items: ["HTML", "CSS", "JavaScript", "Chart.js"] },
+        { group: "Backend", items: ["Python", "Flask"] },
+        { group: "AI", items: ["Google Gemini", "LangSmith"] },
+        { group: "Data", items: ["Supabase", "Postgres"] },
+        { group: "Integrations", items: ["Google Drive", "Google Calendar", "Gmail"] },
+      ],
+      repo: "https://github.com/Renee1306/HireNet",
+      live: "https://hirenet-6oid.onrender.com",
+      image: "/hirenet.png",
+      liveNote: "Backend is on a free tier — the first request after idle takes ~30–60s to wake.",
+    },
   ],
 };
 
